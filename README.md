@@ -95,11 +95,18 @@ _know everything about your backups_
 # Clone ou copie o script
 git clone https://github.com/montezuma-p/backup-universal
 
-# Dê permissão de execução
-chmod +x backup.py
+# O sistema agora é modular! Você pode executar de duas formas:
+
+# 1. Como módulo Python (a partir do diretório pai)
+cd /caminho/para/
+python3 -m backup --help
+
+# 2. Usando o script wrapper
+chmod +x backup/run_backup.py
+./backup/run_backup.py --help
 
 # (Opcional) Crie um alias no seu .bashrc ou .zshrc
-echo "alias backup='python3 ~/.scripts/tools/backup/backup.py'" >> ~/.bashrc
+echo "alias backup='cd ~/.scripts/tools && python3 -m backup'" >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -110,33 +117,33 @@ source ~/.bashrc
 ### 📦 Criar Backup
 
 ```bash
-# Backup da Área de Trabalho (interativo)
-python3 backup.py
+# Backup do diretório padrão (configurado em config.json)
+python3 -m backup
 
 # Backup de diretório específico
-python3 backup.py -d /home/user/projetos
+python3 -m backup -d /home/user/projetos
 
 # Backup com nome personalizado
-python3 backup.py -d ./meu-projeto --nome projeto-importante
+python3 -m backup -d ./meu-projeto --nome projeto-importante
 
 # Backup com compressão máxima
-python3 backup.py --compressao-maxima
+python3 -m backup --compressao-maxima
 
 # Backup silencioso (sem confirmação) - requer formato
-python3 backup.py -d ~/documentos --silencioso --formato tar
+python3 -m backup -d ~/documentos --silencioso --formato tar
 
 # Backup em formato ZIP (compatível com Windows)
-python3 backup.py --formato zip
+python3 -m backup --formato zip
 
 # Excluir padrões adicionais
-python3 backup.py --excluir "*.mp4,*.mkv,videos"
+python3 -m backup --excluir "*.mp4,*.mkv,videos"
 ```
 
 ### 📋 Listar Backups
 
 ```bash
 # Lista todos os backups com estatísticas
-python3 backup.py --listar-backups
+python3 -m backup --listar-backups
 ```
 
 Saída:
@@ -155,22 +162,72 @@ Saída:
 ### 🧹 Limpar Backups Antigos
 
 ```bash
-# Remove backups com mais de 30 dias ou excedendo 5 por diretório
-python3 backup.py --limpar-antigos
+# Remove backups conforme política configurada em config.json
+python3 -m backup --limpar-antigos
 ```
 
 ### 🔄 Restaurar Backup
 
 ```bash
 # Interface interativa para restauração
-python3 backup.py --restaurar
+python3 -m backup --restaurar
 ```
 
 ---
 
 ## ⚙️ configuração
 
-O script armazena backups em:
+### 📁 Estrutura Modular (v1.1)
+
+```
+backup/
+├── __init__.py              # Package principal
+├── __main__.py              # Entry point
+├── cli.py                   # Interface CLI
+├── config.py                # Gerenciador de configuração
+├── config.json              # Arquivo de configuração
+├── run_backup.py            # Script wrapper
+├── core/                    # Módulos principais
+│   ├── backup_manager.py    # Orquestrador
+│   ├── compression.py       # Compressão
+│   ├── exclusion.py         # Filtros
+│   └── integrity.py         # Hashes
+├── storage/                 # Armazenamento
+│   ├── index.py            # Índice JSON
+│   └── cleanup.py          # Limpeza
+├── restore/                # Restauração
+│   └── restore_manager.py
+└── utils/                  # Utilitários
+    ├── formatters.py
+    └── file_utils.py
+```
+
+### 🔧 config.json
+
+Todas as configurações agora estão centralizadas em `config.json`:
+
+```json
+{
+  "paths": {
+    "default_backup_source": "/home/montezuma",
+    "backup_destination": "~/.bin/data/backups/archives"
+  },
+  "retention_policy": {
+    "max_backups_per_directory": 5,
+    "days_to_keep": 30
+  },
+  "compression": {
+    "default_format": "tar",
+    "default_level": 6
+  },
+  "exclusion_patterns": {
+    "default": [...],
+    "custom": []
+  }
+}
+```
+
+Os backups são armazenados em:
 ```
 ~/.bin/data/backups/archives/
 ├── backup_projeto1_20241105_143022.tar.gz
@@ -324,3 +381,39 @@ Feito com ❤️ por **[Montezuma](https://github.com/montezuma-p)**
 ### 🚀 **bora fazer backup das paradas importantes!** 🚀
 
 </div>
+
+---
+
+## 🎉 Novidades da Versão 1.1
+
+### ✨ Modularização Completa
+
+A versão 1.1 traz uma **refatoração completa** do código:
+
+- **📦 Arquitetura Modular**: Código organizado em módulos especializados
+- **⚙️ config.json**: Todas as configurações em um único arquivo JSON
+- **🧪 Testabilidade**: Cada módulo pode ser testado isoladamente
+- **🔌 Reutilização**: Módulos podem ser importados em outros projetos
+- **📚 Manutenibilidade**: Fácil localização e correção de bugs
+
+### 🏗️ Estrutura de Módulos
+
+| Módulo | Responsabilidade |
+|--------|------------------|
+| `config.py` | Gerenciamento de configurações |
+| `core/backup_manager.py` | Orquestração do processo de backup |
+| `core/compression.py` | Compressão (tar.gz, zip) |
+| `core/exclusion.py` | Filtros de exclusão |
+| `core/integrity.py` | Verificação de integridade (hashes) |
+| `storage/index.py` | Gerenciamento do índice JSON |
+| `storage/cleanup.py` | Políticas de limpeza |
+| `restore/restore_manager.py` | Sistema de restauração |
+| `utils/formatters.py` | Formatação de dados |
+| `utils/file_utils.py` | Operações com arquivos |
+
+### 🔄 Migração da v1.0
+
+Se você usava a versão anterior (`backup.py`), **nada muda na linha de comando**! A interface permanece 100% compatível. Apenas execute com `python3 -m backup` ao invés de `python3 backup.py`.
+
+---
+

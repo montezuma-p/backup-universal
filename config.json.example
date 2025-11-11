@@ -1,0 +1,52 @@
+{
+  "paths": {
+    "default_backup_source": "/home/SEU_USUARIO",
+    "backup_destination": "~/.bin/data/backups/archives",
+    "temp_dir": "/tmp/backup-universal"
+  },
+  "retention_policy": {
+    "max_backups_per_directory": 5,
+    "days_to_keep": 30,
+    "max_total_size_gb": 50
+  },
+  "compression": {
+    "default_format": "tar",
+    "default_level": 6
+  },
+  "exclusion_patterns": {
+    "default": [
+      "*.tmp",
+      "*.temp",
+      "*.log",
+      "*.cache",
+      "node_modules",
+      "npm-debug.log",
+      ".npm",
+      "__pycache__",
+      "*.pyc",
+      ".pytest_cache",
+      "venv",
+      ".venv",
+      ".git",
+      ".vscode",
+      ".idea",
+      "*.swp",
+      "*.swo",
+      "build",
+      "dist",
+      "target",
+      ".DS_Store",
+      "Thumbs.db",
+      ".Trash",
+      "*.iso",
+      "*.dmg",
+      "*.img"
+    ],
+    "custom": []
+  },
+  "notifications": {
+    "enabled": false,
+    "email": "",
+    "webhook_url": ""
+  }
+}

@@ -34,28 +34,33 @@ O objetivo é tornar o sistema cada vez mais robusto, flexível e integrado com 
 - [x] Estatísticas detalhadas de compressão
 - [x] Modo silencioso para automação
 - [x] Relatórios de progresso em tempo real
+- [x] **✨ Arquitetura modular (v1.1)**
+- [x] **✨ Sistema de configuração via config.json (v1.1)**
+- [x] **✨ Separação de responsabilidades em módulos (v1.1)**
 
 ---
 
 ## 🚀 próximos passos
 
-### 🔧 **v1.1 - Configuração Flexível** (Prioridade Alta)
+### 🔧 **v1.1 - Configuração Flexível** ✅ **CONCLUÍDO!**
 
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3N3NXNqeGFhbWRlZGV4d2VkdXFjMnB6M3NlaGRhbDN5N2FzYndpMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tn33aiTi1jkl6H6/giphy.gif" width="250" align="right"/>
 
-#### 📝 Implementar sistema de configuração via JSON
+#### 📝 Sistema de configuração via JSON
 
-- [ ] **Criar `config.json`** na raiz do projeto
-- [ ] Mover diretórios hardcoded para configuração:
-  - `area_trabalho` (atualmente `/home/montezuma`)
-  - `dir_backups` (atualmente `~/.bin/data/backups/archives`)
-- [ ] Padrões de exclusão personalizáveis via config
-- [ ] Políticas de retenção configuráveis:
+- [x] **Criar `config.json`** na raiz do projeto
+- [x] Mover diretórios hardcoded para configuração:
+  - `default_backup_source`
+  - `backup_destination`
+- [x] Padrões de exclusão personalizáveis via config
+- [x] Políticas de retenção configuráveis:
   - Número de backups por diretório
   - Dias para manter backups
   - Tamanho máximo total de backups
-- [ ] Formato padrão de compressão (tar/zip)
-- [ ] Nível de compressão padrão (0-9)
+- [x] Formato padrão de compressão (tar/zip)
+- [x] Nível de compressão padrão (0-9)
+- [x] **Arquitetura modular completa**
+- [x] **Separação em módulos especializados**
 
 **Exemplo de `config.json`:**
 ```json
@@ -153,8 +158,8 @@ _let's build the future of backups together!_
 
 ---
 
-**Última atualização:** 05 de novembro de 2024  
-**Versão atual:** 1.0  
-**Próxima release:** v1.1 (config.json)
+**Última atualização:** 11 de novembro de 2025  
+**Versão atual:** 1.1 ✨ **MODULARIZADA**  
+**Próxima release:** v1.2 (Integração Cloud)
 
 </div>
