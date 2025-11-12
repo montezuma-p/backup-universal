@@ -1,0 +1,32 @@
+# Dependências de Desenvolvimento e Testes
+# Backup Universal - Testing Suite
+
+# === Testing Framework ===
+pytest>=7.4.0              # Framework de testes moderno e poderoso
+pytest-cov>=4.1.0          # Cobertura de código
+pytest-mock>=3.12.0        # Mocking facilitado
+pytest-xdist>=3.5.0        # Execução paralela de testes
+
+# === Test Helpers ===
+faker>=20.0.0              # Geração de dados fake para testes
+freezegun>=1.4.0           # Mock de datetime para testes temporais
+pytest-timeout>=2.2.0      # Timeout para testes longos
+
+# === Code Quality ===
+pylint>=3.0.0              # Linter completo
+flake8>=6.1.0              # Verificador de estilo
+black>=23.12.0             # Formatador automático de código
+isort>=5.13.0              # Organizador de imports
+mypy>=1.7.0                # Type checker
+
+# === Coverage & Reports ===
+coverage[toml]>=7.3.0      # Relatórios de cobertura
+pytest-html>=4.1.0         # Relatórios HTML de testes
+
+# === Fixtures & Utilities ===
+pytest-asyncio>=0.23.0     # Suporte a testes async (futuro)
+responses>=0.24.0          # Mock de requests HTTP (futuro - cloud sync)
+
+# === Development ===
+ipython>=8.18.0            # REPL melhorado para debug
+ipdb>=0.13.13              # Debugger interativo

@@ -98,14 +98,11 @@ cd backup-universal
 
 # Configure suas preferências
 cp config.json.example config.json
-nano config.json  # Edite default_backup_source
-
-# Torne o script executável
-chmod +x backup.sh
-
-# Teste
-./backup.sh --help
 ```
+
+## 🤝 contribuindo
+
+Quer ajudar no projeto? Veja o [guia de contribuição](docs/CONTRIBUINDO.md)!
 
 **Três formas de executar:**
 
