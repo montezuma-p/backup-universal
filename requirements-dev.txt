@@ -28,5 +28,5 @@ pytest-asyncio>=0.23.0     # Suporte a testes async (futuro)
 responses>=0.24.0          # Mock de requests HTTP (futuro - cloud sync)
 
 # === Development ===
-ipython>=8.18.0            # REPL melhorado para debug
+ipython>=8.0.0             # REPL melhorado para debug (compatível com Python 3.8+)
 ipdb>=0.13.13              # Debugger interativo
