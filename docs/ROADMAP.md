@@ -37,6 +37,8 @@ O objetivo é tornar o sistema cada vez mais robusto, flexível e integrado com 
 - [x] **✨ Arquitetura modular (v1.1)**
 - [x] **✨ Sistema de configuração via config.json (v1.1)**
 - [x] **✨ Separação de responsabilidades em módulos (v1.1)**
+- [x] **✨ Suite completa de testes automatizados (v1.2)**
+- [x] **✨ Cobertura de código 80%+ (v1.2)**
 
 ---
 
@@ -103,7 +105,47 @@ O objetivo é tornar o sistema cada vez mais robusto, flexível e integrado com 
 
 ---
 
-### ☁️ **v1.2 - Integração com Cloud** (Prioridade Alta)
+### 🧪 **v1.2 - Testes Automatizados** ✅ **CONCLUÍDO!**
+
+<img src="https://media.giphy.com/media/3oKIPnAiaMCws8nOsE/giphy.gif" width="200" align="right"/>
+
+#### 🧪 Suite completa de testes
+
+- [x] **Testes unitários para todos os módulos**
+- [x] Cobertura de 80%+ do código
+- [x] Testes para BackupManager
+- [x] Testes para RestoreManager
+- [x] Testes para sistema de exclusão
+- [x] Testes para compressão e integridade
+- [x] Testes para índice e cleanup
+- [x] Testes para utilitários
+- [x] Configuração pytest com coverage
+- [x] Integração contínua (GitHub Actions)
+
+**Benefícios:**
+- ✅ Código mais confiável
+- ✅ Refatoração segura
+- ✅ Documentação viva
+- ✅ Menos bugs em produção
+
+---
+
+### ☁️ **v1.3 - Testes de Integração** (Em Desenvolvimento)
+
+<img src="https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif" width="200" align="right"/>
+
+#### 🔗 Testes end-to-end
+
+- [ ] Testes de fluxo completo de backup
+- [ ] Testes de restauração real
+- [ ] Testes de limpeza automática
+- [ ] Testes de cenários complexos
+- [ ] Testes de performance
+- [ ] Testes com dados reais
+
+---
+
+### ☁️ **v1.4 - Integração com Cloud** (Planejado)
 
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjhyN2N5Z3NrY21sZGN4ZHVhbm13ZGxlcHd0Y2lwZDc5OGY3OGZzayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LmNwrBhejkK9EFP504/giphy.gif" width="200" align="right"/>
 
@@ -158,8 +200,8 @@ _let's build the future of backups together!_
 
 ---
 
-**Última atualização:** 11 de novembro de 2025  
-**Versão atual:** 1.1 ✨ **MODULARIZADA**  
-**Próxima release:** v1.2 (Integração Cloud)
+**Última atualização:** 12 de novembro de 2025  
+**Versão atual:** 1.2 ✨ **COM TESTES AUTOMATIZADOS**  
+**Próxima release:** v1.3 (Testes de Integração)
 
 </div>

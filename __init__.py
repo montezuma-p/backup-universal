@@ -14,10 +14,10 @@ __version__ = "1.1.0"
 __author__ = "Pedro Montezuma"
 __license__ = "MIT"
 
-from .config import Config
-from .core import BackupManager, ExclusionFilter, IntegrityChecker
-from .storage import BackupIndex, CleanupManager
-from .restore import RestoreManager
+from config import Config
+from core import BackupManager, ExclusionFilter, IntegrityChecker
+from storage import BackupIndex, CleanupManager
+from restore import RestoreManager
 
 __all__ = [
     'Config',

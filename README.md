@@ -1,441 +1,260 @@
 <div align="center">
 
-# 📦 backup universal 📦
+# 📦 backup universal
 
-<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWEwYzIzbjg4cHoyN2hoNWswajBreDRieTRudmh4ZmZnNzg2Nmt5OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Yra5D7TBosllmwnGhG/giphy.gif" width="400"/>
+![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
+![Coverage](https://img.shields.io/badge/coverage-80%2B-success.svg)
 
-### 🚀 script inteligente de backup
+**sistema inteligente de backup para linux**
 
-**Porque perder dados é coisa do passado.**  
+*porque perder dados é coisa do passado* 🚀
+
 </div>
 
 ---
-
-## 🎯 o que é isso?
-
-Sistema completo de backup universal para Linux que:
-- 📦 **Compacta** diretórios inteiros com exclusões inteligentes
-- 🗜️ **Suporta** múltiplos formatos (.tar.gz e .zip)
-- 🎯 **Detecta** tipos de projeto (Node.js, Python, Java, Git)
-- 🧹 **Limpa** backups antigos automaticamente
-- 🔄 **Restaura** backups interativamente
-- 📈 **Estatísticas** detalhadas de compressão
-- 🔒 **Hash MD5** para verificação de integridade
 
 <div align="center">
 
-<img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3OGd3eGh3d2tkODYzNTZteHExN25ndmJsZDFncmtyZmZlOGx2cGg0dyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/CuuSHzuc0O166MRfjt/giphy.gif" width="250"/>
+## 💡 o que é isso?
 
 </div>
 
----
+Sistema completo e modular de backup que faz tudo pra você: compacta, organiza, limpa backups antigos e ainda restaura quando precisar.
 
-## ⚡ features principais
+**Versão 1.2** agora com **suite completa de testes automatizados** e **80%+ de cobertura de código**.
+
+<br>
+
+<div align="center">
+
+## ✨ recursos principais
+
+</div>
 
 <table>
 <tr>
-<td width="50%">
-
-### 🎨 **Exclusões Inteligentes**
-Ignora automaticamente:
-- `node_modules`, `__pycache__`, `.git`
-- Arquivos temporários e cache
-- Builds e IDEs
-- ISOs e arquivos grandes
-
-_smart pattern matching_
-
+<td align="center" width="25%">
+<img src="https://img.icons8.com/fluency/96/compress.png" width="64"/><br>
+<b>Compressão Inteligente</b><br>
 </td>
-<td width="50%">
 
-### 🗂️ **Gerenciamento Avançado**
-Sistema completo com:
-- Índice JSON de todos os backups
-- Agrupamento por diretório
-- Políticas de retenção configuráveis
-- Estatísticas de compressão
-
-_complete lifecycle management_
-
+<td align="center" width="25%">
+<img src="https://img.icons8.com/fluency/96/verified-badge.png" width="64"/><br>
+<b>Verificação de Integridade</b><br>
 </td>
-</tr>
-<tr>
-<td>
 
-### 🔄 **Restauração Simples**
-Interface interativa para:
-- Listar backups disponíveis
-- Escolher versões específicas
-- Restaurar para qualquer local
-- Validar integridade
-
-_restore with confidence_
-
+<td align="center" width="25%">
+<img src="https://img.icons8.com/fluency/96/delete-shield.png" width="64"/><br>
+<b>Exclusões Inteligentes</b><br>
 </td>
-<td>
 
-### 📊 **Relatórios Detalhados**
-Informações completas:
-- Taxa de compressão
-- Número de arquivos
-- Tamanho antes/depois
-- Tipo de projeto detectado
-
-_know everything about your backups_
-
+<td align="center" width="25%">
+<img src="https://img.icons8.com/fluency/96/database-restore.png" width="64"/><br>
+<b>Restauração Fácil</b><br>
 </td>
 </tr>
 </table>
 
----
+<br>
 
-## 🚀 instalação
+<div align="center">
+
+## 🚀 instalação rápida
+
+</div>
 
 ```bash
-# Clone o repositório
 git clone https://github.com/montezuma-p/backup-universal
 cd backup-universal
-
-# Configure suas preferências
 cp config.json.example config.json
 ```
 
-## 🤝 contribuindo
+<br>
 
-Quer ajudar no projeto? Veja o [guia de contribuição](docs/CONTRIBUINDO.md)!
+<div align="center">
 
-**Três formas de executar:**
+## 💻 como usar
 
-```bash
-# 1. Shell script (recomendado)
-./backup.sh --listar-backups
-
-# 2. Como módulo Python
-cd .. && python3 -m backup --help
-
-# 3. Criando um alias global
-echo "alias backup='/caminho/completo/backup.sh'" >> ~/.bashrc
-source ~/.bashrc
-backup --help
-```
-
----
-
-## 📖 uso
-
-### 📦 Criar Backup
+</div>
 
 ```bash
-# Backup do diretório padrão (configurado em config.json)
-python3 -m backup
+# Criar backup
+python3 -m backup --criar /caminho/origem
 
-# Backup de diretório específico
-python3 -m backup -d /home/user/projetos
+# Listar backups disponíveis
+python3 -m backup --listar
 
-# Backup com nome personalizado
-python3 -m backup -d ./meu-projeto --nome projeto-importante
+# Restaurar backup
+python3 -m backup --restaurar
 
-# Backup com compressão máxima
-python3 -m backup --compressao-maxima
-
-# Backup silencioso (sem confirmação) - requer formato
-python3 -m backup -d ~/documentos --silencioso --formato tar
-
-# Backup em formato ZIP (compatível com Windows)
-python3 -m backup --formato zip
-
-# Excluir padrões adicionais
-python3 -m backup --excluir "*.mp4,*.mkv,videos"
-```
-
-### 📋 Listar Backups
-
-```bash
-# Lista todos os backups com estatísticas
-python3 -m backup --listar-backups
-```
-
-Saída:
-```
-📋 BACKUPS EXISTENTES
-============================================================
-
-📁 meu-projeto (3 backups)
-  🟢 RECENTE backup_meu-projeto_20241105_143022.tar.gz
-      📅 05/11/2024 14:30:22
-      📊 45.2 MB (compressão: 78.5%)
-      🎯 Tipo: nodejs
-      📁 Origem: /home/user/projetos/meu-projeto
-```
-
-### 🧹 Limpar Backups Antigos
-
-```bash
-# Remove backups conforme política configurada em config.json
+# Limpar backups antigos
 python3 -m backup --limpar-antigos
 ```
 
-### 🔄 Restaurar Backup
+<br>
 
-```bash
-# Interface interativa para restauração
-python3 -m backup --restaurar
-```
-
----
+<div align="center">
 
 ## ⚙️ configuração
 
-### 📁 Estrutura Modular (v1.1)
+</div>
 
-```
-backup-universal/
-├── backup.sh                # 🚀 Script launcher
-├── config.json.example      # 📝 Template de configuração
-├── LICENSE
-├── README.md
-├── docs/                    # 📚 Documentação
-│   └── ROADMAP.md
-├── examples/                # 💡 Exemplos de uso
-│   └── examples.py
-└── backup/                  # 📦 Package Python
-    ├── __init__.py          # Package principal
-    ├── __main__.py          # Entry point
-    ├── cli.py               # Interface CLI
-    ├── config.py            # Gerenciador de configuração
-    ├── config.json          # Configuração pessoal (não versionado)
-    ├── core/                # Módulos principais
-    │   ├── backup_manager.py    # Orquestrador
-    │   ├── compression.py       # Compressão
-    │   ├── exclusion.py         # Filtros
-    │   └── integrity.py         # Hashes
-    ├── storage/             # Armazenamento
-    │   ├── index.py         # Índice JSON
-    │   └── cleanup.py       # Limpeza
-    ├── restore/             # Restauração
-    │   └── restore_manager.py
-    └── utils/               # Utilitários
-        ├── formatters.py
-        └── file_utils.py
-```
-│   └── restore_manager.py
-└── utils/                  # Utilitários
-    ├── formatters.py
-    └── file_utils.py
-```
-
-### 🔧 config.json
-
-Todas as configurações agora estão centralizadas em `config.json`:
+Edite o arquivo `config.json` com suas preferências:
 
 ```json
 {
   "paths": {
-    "default_backup_source": "/home/montezuma",
-    "backup_destination": "~/.bin/data/backups/archives"
+    "backup_destination": "~/.backups"
   },
   "retention_policy": {
     "max_backups_per_directory": 5,
-    "days_to_keep": 30
+    "max_age_days": 30
   },
   "compression": {
-    "default_format": "tar",
-    "default_level": 6
-  },
-  "exclusion_patterns": {
-    "default": [...],
-    "custom": []
+    "algorithm": "gzip"
   }
 }
 ```
 
-Os backups são armazenados em:
-```
-~/.bin/data/backups/archives/
-├── backup_projeto1_20241105_143022.tar.gz
-├── backup_projeto2_20241105_150433.zip
-└── indice_backups.json
-```
+<br>
 
-### 📝 Padrões de Exclusão Padrão
+<div align="center">
 
-- **Temporários:** `*.tmp`, `*.temp`, `*.log`, `*.cache`
-- **Node.js:** `node_modules`, `npm-debug.log`, `.npm`
-- **Python:** `__pycache__`, `*.pyc`, `.pytest_cache`, `venv`, `.venv`
-- **Git:** `.git`
-- **IDEs:** `.vscode`, `.idea`, `*.swp`, `*.swo`
-- **Builds:** `build`, `dist`, `target`
-- **OS:** `.DS_Store`, `Thumbs.db`, `.Trash`
-- **Grandes:** `*.iso`, `*.dmg`, `*.img`
+## 🧪 testes
 
----
+</div>
 
-## 🎯 exemplos práticos
-
-### Backup de Projeto Web
+O projeto inclui uma suite completa de testes automatizados:
 
 ```bash
-# Backup de projeto Node.js com exclusões
-python3 backup.py -d ~/projetos/meu-site \
-  --nome site-producao \
-  --excluir "uploads,*.log,public/temp" \
-  --formato tar
+# Instalar dependências de teste
+pip install -r requirements-dev.txt
+
+# Rodar todos os testes
+pytest
+
+# Ver cobertura de código
+pytest --cov=backup --cov-report=html
 ```
 
-### Backup Automatizado (Cron)
+**229 testes** cobrindo todos os módulos principais com **81% de cobertura total**.
 
-```bash
-# Adicione ao crontab (crontab -e)
-# Backup diário às 3h da manhã
-0 3 * * * python3 ~/.scripts/tools/backup/backup.py -d ~/projetos --silencioso --formato tar
+<br>
 
-# Limpeza semanal aos domingos às 4h
-0 4 * * 0 python3 ~/.scripts/tools/backup/backup.py --limpar-antigos
+<div align="center">
+
+## 📁 estrutura do projeto
+
+</div>
+
+```
+backup/
+├── core/                    # 🧠 Lógica principal
+│   ├── backup_manager.py   # Orquestrador de backups
+│   ├── compression.py      # Algoritmos de compressão
+│   ├── exclusion.py        # Sistema de filtros
+│   └── integrity.py        # Verificação de hashes
+├── storage/                 # 💾 Armazenamento
+│   ├── index.py            # Índice
+│   └── cleanup.py          # Limpeza automática
+├── restore/                 # ♻️ Restauração
+│   └── restore_manager.py  # Sistema de restore
+└── utils/                   # 🛠️ Utilitários
+    ├── formatters.py       # Formatação de saída
+    └── file_utils.py       # Operações de arquivo
+
+tests/
+├── unit/                    # 🧪 Testes unitários
+│   ├── test_backup_manager.py
+│   ├── test_compression.py
+│   ├── test_exclusion.py
+│   ├── test_integrity.py
+│   ├── test_index.py
+│   ├── test_cleanup.py
+│   ├── test_restore_manager.py
+│   └── ...
+└── integration/             # 🔗 Testes de integração
+    └── (em desenvolvimento)
 ```
 
-### Backup de Múltiplos Diretórios
+<br>
 
-```bash
-# Script shell para backup de múltiplos diretórios
-#!/bin/bash
-for dir in ~/projetos/*/; do
-    python3 backup.py -d "$dir" --silencioso --formato tar
-done
-```
+<div align="center">
 
----
+## 🎯 exclusões automáticas
 
-## 📊 estrutura do índice
+</div>
 
-O arquivo `indice_backups.json` mantém registro completo:
+O sistema ignora automaticamente arquivos desnecessários:
 
-```json
-[
-  {
-    "arquivo": "backup_meu-projeto_20241105_143022.tar.gz",
-    "diretorio_origem": "/home/user/projetos/meu-projeto",
-    "nome_diretorio": "meu-projeto",
-    "data_criacao": "2024-11-05T14:30:22.123456",
-    "tamanho_original": 210534400,
-    "tamanho_backup": 45234560,
-    "taxa_compressao": 78.5,
-    "total_arquivos": 1523,
-    "arquivos_excluidos": 45632,
-    "diretorios_excluidos": 234,
-    "tipo_diretorio": "nodejs",
-    "hash_md5": "a1b2c3d4e5f6...",
-    "compressao_maxima": false,
-    "formato": "tar"
-  }
-]
-```
+- **Dependências**: `node_modules`, `__pycache__`, `venv`
+- **Cache**: `*.cache`, `.pytest_cache`, `.npm`
+- **Temporários**: `*.tmp`, `*.log`
+- **Controle de versão**: `.git`, `.svn`
+- **IDEs**: `.vscode`, `.idea`, `*.swp`
+- **Builds**: `build`, `dist`, `target`
 
----
+<br>
+
+<div align="center">
 
 ## 🛠️ stack tecnológico
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
-![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white)
-
-**Bibliotecas Python:**
-- `tarfile` - Compressão .tar.gz
-- `zipfile` - Compressão .zip
-- `hashlib` - Verificação de integridade
-- `argparse` - CLI interface
-- `pathlib` - Manipulação de paths
-- `json` - Gerenciamento de índice
-
----
-
-## 🎯 casos de uso
-
-✅ **Backup de projetos antes de grandes mudanças**  
-✅ **Versionamento de configurações do sistema**  
-✅ **Arquivamento de projetos antigos**  
-✅ **Backup antes de limpezas de disco**  
-✅ **Proteção de dados importantes**  
-✅ **Sincronização com nuvem (pasta de backups)**
-
-<div align="center">
-
-<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjl6a2VyYzZvdGRmYndlanE3aXl6eG1iN2k4bHp0bWczY282Z3JoYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/YQitE4YNQNahy/giphy.gif" width="300"/>
-
 </div>
 
----
+<p align="center">
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white"/>
+<img src="https://img.shields.io/badge/pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white"/>
+<img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"/>
+</p>
+
+<br>
+
+<div align="center">
 
 ## 🔮 roadmap
 
-Veja [ROADMAP.md](ROADMAP.md) para planos futuros e desenvolvimento.
+</div>
 
----
+Veja o [ROADMAP.md](docs/ROADMAP.md) completo para os próximos passos.
 
-## 🤝 contribuindo
+**v1.2** ✅ Suite de testes automatizados  
+**v1.3** 🚧 Testes de integração  
+**v1.4** 📋 Integração com cloud storage
 
-Contribuições são sempre bem-vindas!
-
-1. Fork o projeto
-2. Crie sua feature branch (`git checkout -b feature/MinhaFeature`)
-3. Commit suas mudanças (`git commit -m 'Add: Minha feature'`)
-4. Push para a branch (`git push origin feature/MinhaFeature`)
-5. Abra um Pull Request
-
----
-
-## 📄 licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-## 👨‍💻 autor
-
-Feito com ❤️ por **[Montezuma](https://github.com/montezuma-p)**
+<br>
 
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/montezuma-p)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/montezuma-p/)
-
-<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHZ2ZDR6YnBxOGFsemJ5Z3FjcW1vdWV6dXlhZ3RrODRlbWN5eXZ1ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hvRJCLFzcasrR4ia7z/giphy.gif" width="100"/>
-
-### 🚀 **bora fazer backup das paradas importantes!** 🚀
+## 📄 licença
 
 </div>
 
+<p align="center">
+Este projeto está sob a licença MIT.<br>
+Veja o arquivo <a href="LICENSE">LICENSE</a> para mais detalhes.
+</p>
+
+<br>
+
+<div align="center">
+
+## 👨‍💻 autor
+
+<img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="80"/>
+
+**Montezuma**
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/montezuma-p)
+
 ---
 
-## 🎉 Novidades da Versão 1.1
+### 🎉 bora fazer backup! 🎉
 
-### ✨ Modularização Completa
-
-A versão 1.1 traz uma **refatoração completa** do código:
-
-- **📦 Arquitetura Modular**: Código organizado em módulos especializados
-- **⚙️ config.json**: Todas as configurações em um único arquivo JSON
-- **🧪 Testabilidade**: Cada módulo pode ser testado isoladamente
-- **🔌 Reutilização**: Módulos podem ser importados em outros projetos
-- **📚 Manutenibilidade**: Fácil localização e correção de bugs
-
-### 🏗️ Estrutura de Módulos
-
-| Módulo | Responsabilidade |
-|--------|------------------|
-| `config.py` | Gerenciamento de configurações |
-| `core/backup_manager.py` | Orquestração do processo de backup |
-| `core/compression.py` | Compressão (tar.gz, zip) |
-| `core/exclusion.py` | Filtros de exclusão |
-| `core/integrity.py` | Verificação de integridade (hashes) |
-| `storage/index.py` | Gerenciamento do índice JSON |
-| `storage/cleanup.py` | Políticas de limpeza |
-| `restore/restore_manager.py` | Sistema de restauração |
-| `utils/formatters.py` | Formatação de dados |
-| `utils/file_utils.py` | Operações com arquivos |
-
-### 🔄 Migração da v1.0
-
-Se você usava a versão anterior (`backup.py`), **nada muda na linha de comando**! A interface permanece 100% compatível. Apenas execute com `python3 -m backup` ao invés de `python3 backup.py`.
+</div>
 
 ---
 

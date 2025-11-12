@@ -7,9 +7,9 @@ from pathlib import Path
 from datetime import datetime
 from typing import Optional, Dict, Any
 
-from ..storage.index import BackupIndex
-from ..core.compression import get_compressor
-from ..utils.formatters import format_bytes, format_date
+from backup.storage.index import BackupIndex
+from backup.core.compression import get_compressor
+from backup.utils.formatters import format_bytes, format_date
 
 
 class RestoreManager:
@@ -235,7 +235,7 @@ class RestoreManager:
         Returns:
             True se íntegro, False caso contrário
         """
-        from ..core.integrity import IntegrityChecker
+        from backup.core.integrity import IntegrityChecker
         
         # Busca backup no índice
         backup_info = None

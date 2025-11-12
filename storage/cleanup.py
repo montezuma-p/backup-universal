@@ -7,8 +7,8 @@ from pathlib import Path
 from datetime import datetime, timedelta
 from typing import List, Dict, Any, Tuple
 
-from .index import BackupIndex
-from ..utils.formatters import format_bytes, format_date
+from backup.storage.index import BackupIndex
+from backup.utils.formatters import format_bytes, format_date
 
 
 class CleanupManager:

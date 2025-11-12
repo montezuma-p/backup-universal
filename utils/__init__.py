@@ -2,7 +2,7 @@
 Utilitários - Funções auxiliares para o sistema de backup
 """
 
-from .formatters import (
+from backup.utils.formatters import (
     format_bytes,
     format_date,
     format_compression_rate,
@@ -11,7 +11,7 @@ from .formatters import (
     truncate_string
 )
 
-from .file_utils import (
+from backup.utils.file_utils import (
     calculate_directory_size,
     detect_directory_type,
     get_directory_info,

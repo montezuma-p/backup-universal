@@ -2,8 +2,8 @@
 Storage - Gerenciamento de armazenamento e índice de backups
 """
 
-from .index import BackupIndex
-from .cleanup import CleanupManager
+from backup.storage.index import BackupIndex
+from backup.storage.cleanup import CleanupManager
 
 __all__ = [
     'BackupIndex',

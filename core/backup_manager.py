@@ -7,13 +7,13 @@ from pathlib import Path
 from datetime import datetime
 from typing import Optional, Callable
 
-from .compression import get_compressor
-from .exclusion import ExclusionFilter
-from .integrity import IntegrityChecker
-from ..storage.index import BackupIndex
-from ..utils.formatters import format_bytes, format_compression_rate, format_number
-from ..utils.file_utils import calculate_directory_size, get_directory_info
-from ..config import Config
+from backup.core.compression import get_compressor
+from backup.core.exclusion import ExclusionFilter
+from backup.core.integrity import IntegrityChecker
+from backup.storage.index import BackupIndex
+from backup.utils.formatters import format_bytes, format_compression_rate, format_number
+from backup.utils.file_utils import calculate_directory_size, get_directory_info
+from backup.config import Config
 
 
 class BackupStats:

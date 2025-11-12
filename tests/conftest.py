@@ -14,7 +14,13 @@ from typing import Dict, Any
 # Adiciona o diretório raiz do projeto ao PYTHONPATH
 project_root = Path(__file__).parent.parent
 import sys
-sys.path.insert(0, str(project_root))
+# Ensure parent of project root is on sys.path so 'backup' package is importable
+parent_of_root = project_root.parent
+if str(parent_of_root) not in sys.path:
+    sys.path.insert(0, str(parent_of_root))
+# Also keep project_root on sys.path for file-based imports
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
 # Importa módulos diretamente dos arquivos
 def import_module_from_file(module_name, file_path):

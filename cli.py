@@ -8,10 +8,10 @@ import argparse
 import sys
 from pathlib import Path
 
-from .config import Config
-from .core.backup_manager import BackupManager
-from .storage.cleanup import CleanupManager
-from .restore.restore_manager import RestoreManager
+from backup.config import Config
+from backup.core.backup_manager import BackupManager
+from backup.storage.cleanup import CleanupManager
+from backup.restore.restore_manager import RestoreManager
 
 
 def create_parser() -> argparse.ArgumentParser:
