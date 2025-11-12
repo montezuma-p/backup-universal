@@ -6,17 +6,26 @@ Configuração global e fixtures reutilizáveis para todos os testes
 import pytest
 import json
 import tempfile
+import importlib.util
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any
 
-# Importa módulos do projeto
+# Adiciona o diretório raiz do projeto ao PYTHONPATH
+project_root = Path(__file__).parent.parent
 import sys
-sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(project_root))
 
-from backup.config import Config
-from backup.core import ExclusionFilter, IntegrityChecker
-from backup.storage import BackupIndex
+# Importa módulos diretamente dos arquivos
+def import_module_from_file(module_name, file_path):
+    spec = importlib.util.spec_from_file_location(module_name, file_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+# Importa módulos necessários
+exclusion_mod = import_module_from_file("exclusion", project_root / "core" / "exclusion.py")
+ExclusionFilter = exclusion_mod.ExclusionFilter
 
 
 # ==================== FIXTURES DE DIRETÓRIOS ====================
@@ -109,19 +118,19 @@ def exclusion_filter():
     Returns:
         ExclusionFilter: Filtro com padrões padrão
     """
-    return ExclusionFilter(['*.log', '*.tmp', '__pycache__', 'node_modules'])
+    return ExclusionFilter(['*.pyc', '*.tmp', '__pycache__', 'node_modules'])
 
 
-@pytest.fixture
-def backup_index(tmp_backup_dir):
-    """
-    Cria BackupIndex vazio para testes
-    
-    Returns:
-        BackupIndex: Índice de backups em diretório temporário
-    """
-    index_file = tmp_backup_dir / "indice_backups.json"
-    return BackupIndex(index_file)
+# @pytest.fixture
+# def backup_index(tmp_backup_dir):
+#     """
+#     Cria BackupIndex vazio para testes
+#     
+#     Returns:
+#         BackupIndex: Índice de backups em diretório temporário
+#     """
+#     index_file = tmp_backup_dir / "indice_backups.json"
+#     return BackupIndex(index_file)
 
 
 @pytest.fixture
