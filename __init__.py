@@ -10,14 +10,14 @@ Sistema completo de backup com:
 - Limpeza automática
 """
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 __author__ = "Pedro Montezuma"
 __license__ = "MIT"
 
-from config import Config
-from core import BackupManager, ExclusionFilter, IntegrityChecker
-from storage import BackupIndex, CleanupManager
-from restore import RestoreManager
+from backup.config import Config
+from backup.core import BackupManager, ExclusionFilter, IntegrityChecker
+from backup.storage import BackupIndex, CleanupManager
+from backup.restore import RestoreManager
 
 __all__ = [
     'Config',
