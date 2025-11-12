@@ -92,22 +92,34 @@ _know everything about your backups_
 ## 🚀 instalação
 
 ```bash
-# Clone ou copie o script
+# Clone o repositório
 git clone https://github.com/montezuma-p/backup-universal
+cd backup-universal
 
-# O sistema agora é modular! Você pode executar de duas formas:
+# Configure suas preferências
+cp config.json.example config.json
+nano config.json  # Edite default_backup_source
 
-# 1. Como módulo Python (a partir do diretório pai)
-cd /caminho/para/
-python3 -m backup --help
+# Torne o script executável
+chmod +x backup.sh
 
-# 2. Usando o script wrapper
-chmod +x backup/run_backup.py
-./backup/run_backup.py --help
+# Teste
+./backup.sh --help
+```
 
-# (Opcional) Crie um alias no seu .bashrc ou .zshrc
-echo "alias backup='cd ~/.scripts/tools && python3 -m backup'" >> ~/.bashrc
+**Três formas de executar:**
+
+```bash
+# 1. Shell script (recomendado)
+./backup.sh --listar-backups
+
+# 2. Como módulo Python
+cd .. && python3 -m backup --help
+
+# 3. Criando um alias global
+echo "alias backup='/caminho/completo/backup.sh'" >> ~/.bashrc
 source ~/.bashrc
+backup --help
 ```
 
 ---
@@ -180,22 +192,35 @@ python3 -m backup --restaurar
 ### 📁 Estrutura Modular (v1.1)
 
 ```
-backup/
-├── __init__.py              # Package principal
-├── __main__.py              # Entry point
-├── cli.py                   # Interface CLI
-├── config.py                # Gerenciador de configuração
-├── config.json              # Arquivo de configuração
-├── run_backup.py            # Script wrapper
-├── core/                    # Módulos principais
-│   ├── backup_manager.py    # Orquestrador
-│   ├── compression.py       # Compressão
-│   ├── exclusion.py         # Filtros
-│   └── integrity.py         # Hashes
-├── storage/                 # Armazenamento
-│   ├── index.py            # Índice JSON
-│   └── cleanup.py          # Limpeza
-├── restore/                # Restauração
+backup-universal/
+├── backup.sh                # 🚀 Script launcher
+├── config.json.example      # 📝 Template de configuração
+├── LICENSE
+├── README.md
+├── docs/                    # 📚 Documentação
+│   └── ROADMAP.md
+├── examples/                # 💡 Exemplos de uso
+│   └── examples.py
+└── backup/                  # 📦 Package Python
+    ├── __init__.py          # Package principal
+    ├── __main__.py          # Entry point
+    ├── cli.py               # Interface CLI
+    ├── config.py            # Gerenciador de configuração
+    ├── config.json          # Configuração pessoal (não versionado)
+    ├── core/                # Módulos principais
+    │   ├── backup_manager.py    # Orquestrador
+    │   ├── compression.py       # Compressão
+    │   ├── exclusion.py         # Filtros
+    │   └── integrity.py         # Hashes
+    ├── storage/             # Armazenamento
+    │   ├── index.py         # Índice JSON
+    │   └── cleanup.py       # Limpeza
+    ├── restore/             # Restauração
+    │   └── restore_manager.py
+    └── utils/               # Utilitários
+        ├── formatters.py
+        └── file_utils.py
+```
 │   └── restore_manager.py
 └── utils/                  # Utilitários
     ├── formatters.py
