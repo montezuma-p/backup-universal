@@ -26,8 +26,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements-dev.txt
     
+    - name: Create 'backup' symlink for CI imports
+      run: |
+        # Create a symlink named 'backup' that points to the repository root.
+        # This makes `import backup.*` work even if the checked-out folder name
+        # differs from 'backup' (e.g., backup-universal on GitHub Actions).
+        ln -s "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/backup" || true
+
     - name: Add package to Python path
       run: |
+        # Ensure Python can import the package from the workspace root
         echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
     
     - name: Run tests with pytest
