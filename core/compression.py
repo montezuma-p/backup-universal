@@ -8,7 +8,7 @@ import tarfile
 import zipfile
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import Optional, Callable
+from typing import Optional, Callable, Tuple
 
 
 class Compressor(ABC):
@@ -22,7 +22,7 @@ class Compressor(ABC):
         exclusion_filter,
         progress_callback: Optional[Callable] = None,
         compression_level: int = 6
-    ) -> tuple[int, int, int]:
+    ) -> Tuple[int, int, int]:
         """
         Comprime um diretório
         
@@ -70,7 +70,7 @@ class TarCompressor(Compressor):
         exclusion_filter,
         progress_callback: Optional[Callable] = None,
         compression_level: int = 6
-    ) -> tuple[int, int, int]:
+    ) -> Tuple[int, int, int]:
         """Comprime usando tar.gz"""
         total_files = 0
         excluded_files = 0
@@ -131,7 +131,7 @@ class ZipCompressor(Compressor):
         exclusion_filter,
         progress_callback: Optional[Callable] = None,
         compression_level: int = 6
-    ) -> tuple[int, int, int]:
+    ) -> Tuple[int, int, int]:
         """Comprime usando zip"""
         total_files = 0
         excluded_files = 0
