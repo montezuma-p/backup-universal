@@ -10,6 +10,7 @@ from typing import Optional, Dict, Any
 from backup.storage.index import BackupIndex
 from backup.core.compression import get_compressor
 from backup.utils.formatters import format_bytes, format_date
+from backup.utils.user_input import safe_input
 
 
 class RestoreManager:
@@ -95,7 +96,13 @@ class RestoreManager:
         
         # Seleção do backup
         try:
-            escolha = input(f"\nEscolha um backup (1-{len(sorted_backups)}) ou 'c' para cancelar: ").strip()
+            escolha = safe_input(f"\nEscolha um backup (1-{len(sorted_backups)}) ou 'c' para cancelar: ", "❌ Restauração cancelada pelo usuário.")
+            
+            if escolha is None:
+                return False
+            
+            escolha = escolha.strip()
+            
             if escolha.lower() == 'c':
                 print("❌ Restauração cancelada.")
                 return False
@@ -121,7 +128,12 @@ class RestoreManager:
         print(f"📂 Origem: {backup_escolhido.get('diretorio_origem', 'N/A')}")
         
         destino_default = Path.home() / "restauracao" / backup_escolhido['nome_diretorio']
-        destino_str = input(f"Diretório de destino (Enter para {destino_default}): ").strip()
+        destino_str = safe_input(f"Diretório de destino (Enter para {destino_default}): ", "❌ Restauração cancelada pelo usuário.")
+        
+        if destino_str is None:
+            return False
+        
+        destino_str = destino_str.strip()
         
         if destino_str:
             destino = Path(destino_str).expanduser()
@@ -135,9 +147,12 @@ class RestoreManager:
         print(f"\n🤔 Confirma restauração?")
         print(f"   📦 Backup: {backup_escolhido['arquivo']}")
         print(f"   📁 Destino: {destino}")
-        confirmacao = input("   Digite 's' para confirmar: ").lower()
+        confirmacao = safe_input("   Digite 's' para confirmar: ", "❌ Restauração cancelada pelo usuário.")
         
-        if confirmacao != 's':
+        if confirmacao is None:
+            return False
+        
+        if confirmacao.lower() != 's':
             print("❌ Restauração cancelada.")
             return False
         

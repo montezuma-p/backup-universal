@@ -150,33 +150,64 @@ pytest --cov=backup --cov-report=html
 </div>
 
 ```
-backup/
-├── core/                    # 🧠 Lógica principal
-│   ├── backup_manager.py   # Orquestrador de backups
-│   ├── compression.py      # Algoritmos de compressão
-│   ├── exclusion.py        # Sistema de filtros
-│   └── integrity.py        # Verificação de hashes
-├── storage/                 # 💾 Armazenamento
-│   ├── index.py            # Índice
-│   └── cleanup.py          # Limpeza automática
-├── restore/                 # ♻️ Restauração
-│   └── restore_manager.py  # Sistema de restore
-└── utils/                   # 🛠️ Utilitários
-    ├── formatters.py       # Formatação de saída
-    └── file_utils.py       # Operações de arquivo
+.
+├── backup.sh
+├── cli.py
+├── config.json.example
+├── config.py
+├── core
+│   ├── backup_manager.py
+│   ├── compression.py
+│   ├── exclusion.py
+│   ├── __init__.py
+│   └── integrity.py
+├── docs
+│   ├── CONTRIBUINDO.md
+│   └── ROADMAP.md
+├── examples
+│   ├── examples.py
+│   └── README.md
+├── __init__.py
+├── LICENSE
+├── __main__.py
+├── pytest.ini
+├── README.md
+├── requirements-dev.txt
+├── restore
+│   ├── __init__.py
+│   └── restore_manager.py
+├── setup.py
+├── storage
+│   ├── cleanup.py
+│   ├── index.py
+│   └── __init__.py
+├── tests
+│   ├── conftest.py
+│   ├── e2e
+│   ├── __init__.py
+│   ├── integration
+│   ├── tmp_debug2
+│   │   └── restored.txt
+│   └── unit
+│       ├── conftest.py
+│       ├── __init__.py
+│       ├── test_backup_manager.py
+│       ├── test_cleanup.py
+│       ├── test_compression.py
+│       ├── test_config.py
+│       ├── test_exclusion.py
+│       ├── test_file_utils.py
+│       ├── test_formatters.py
+│       ├── test_index.py
+│       ├── test_integrity.py
+│       └── test_restore_manager.py
+└── utils
+    ├── file_utils.py
+    ├── formatters.py
+    ├── __init__.py
+    └── user_input.py
 
-tests/
-├── unit/                    # 🧪 Testes unitários
-│   ├── test_backup_manager.py
-│   ├── test_compression.py
-│   ├── test_exclusion.py
-│   ├── test_integrity.py
-│   ├── test_index.py
-│   ├── test_cleanup.py
-│   ├── test_restore_manager.py
-│   └── ...
-└── integration/             # 🔗 Testes de integração
-    └── (em desenvolvimento)
+12 directories, 44 files
 ```
 
 <br>

@@ -13,6 +13,7 @@ from backup.core.integrity import IntegrityChecker
 from backup.storage.index import BackupIndex
 from backup.utils.formatters import format_bytes, format_compression_rate, format_number
 from backup.utils.file_utils import calculate_directory_size, get_directory_info
+from backup.utils.user_input import safe_input
 from backup.config import Config
 
 
@@ -220,7 +221,12 @@ class BackupManager:
         print("   [2] .zip (Windows)")
         print("      OBS: Para poder descompactar em um Windows")
         
-        formato_opcao = input("   Digite 1 para .tar.gz ou 2 para .zip: ").strip()
+        formato_opcao = safe_input("   Digite 1 para .tar.gz ou 2 para .zip: ", "❌ Backup cancelado pelo usuário.")
+        
+        if formato_opcao is None:
+            return False
+        
+        formato_opcao = formato_opcao.strip()
         
         if formato_opcao == '1':
             format_type = 'tar'
@@ -236,8 +242,12 @@ class BackupManager:
             'default_level': self.config.default_compression_level
         })
         
-        confirmacao = input("   Digite 's' para continuar ou qualquer tecla para cancelar: ").lower()
-        return confirmacao == 's'
+        confirmacao = safe_input("   Digite 's' para continuar ou qualquer tecla para cancelar: ", "❌ Backup cancelado pelo usuário.")
+        
+        if confirmacao is None:
+            return False
+        
+        return confirmacao.lower() == 's'
     
     def _print_success_report(self, filename: str, backup_path: Path) -> None:
         """Imprime relatório de sucesso"""
